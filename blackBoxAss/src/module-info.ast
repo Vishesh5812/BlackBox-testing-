@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<CompilationUnit BeginColumn='1' BeginLine='7' EndColumn='2' EndLine='8' Image='' PackageName=''>
+    <ModuleDeclaration BeginColumn='1' BeginLine='7' EndColumn='2' EndLine='8' Image='' Name='blackBoxAss' Open='false'>
+        <ModuleName BeginColumn='8' BeginLine='7' EndColumn='19' EndLine='7' Image='' Name='blackBoxAss' />
+    </ModuleDeclaration>
+</CompilationUnit>
