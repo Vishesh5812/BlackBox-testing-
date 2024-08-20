@@ -173,43 +173,59 @@ public class blackBoxAss
 
         Scanner sn = new Scanner(System.in);
 
-        
+            
+                
+            while(true)
+            {
             try 
             {
             System.out.print("Please choose a vehicle number:");
             choice = sn.nextInt();
 
-            while (choice < 1 || choice > 3) 
+
+            while (choice < 1 || choice > 3 ) 
             { 
-                System.out.print("Please choose a vehicle number:");
+                System.out.print("Please choose a vehicle number between 1 and 3:");
                 choice = sn.nextInt();
             }
 
-            switch (choice) {
-                case 1:
-                    choice = ((distNo * 3)-2);
-                    System.out.print("You have chosen");
-                    vh[choice].displayCars();
-                    break;
-                case 2:
-                    choice = ((distNo * 3)-1);
+            if (choice == 1)
+            {
+                choice = ((distNo * 3)-2);
+                    System.out.println("");
                     System.out.println("You have chosen");
                     vh[choice].displayCars();
                     break;
-                    
-                default:
-                    choice = ((distNo * 3)-0);
-                    System.out.println("You have chosen");
-                    vh[choice].displayCars();
             }
 
-            } 
-            catch (Exception e)
+            if (choice == 2)
             {
-                System.out.println("An invalid character has been entered. Please restart session !");
+                    choice = ((distNo * 3)-1);
+                    System.out.println("");
+                    System.out.println("You have chosen");
+                    vh[choice].displayCars();
+                    break;
+            }
+
+            if (choice == 3)
+            {
+                    choice = ((distNo * 3)-0);
+                    System.out.println("");
+                    System.out.println("You have chosen");
+                    vh[choice].displayCars();
+                    break;
+            } 
+                
+            } 
+            
+            catch (InputMismatchException e)
+            {
+                System.out.println("An invalid character has been entered.!");
+                sn.next();
             }
         
-
+        }
+        
         
         
 
