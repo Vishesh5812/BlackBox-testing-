@@ -4,10 +4,8 @@ public class blackBoxAss
 {
     public static void main(String[] args)
     {
-        int districtNo;
-        String firstName,lastName;
-
-        
+       int districtNo,vehicleNo;
+       String firstName,lastName;
 
         Scanner sn = new Scanner(System.in);
         Vehicle vh[] = new Vehicle[28];
@@ -15,7 +13,6 @@ public class blackBoxAss
 
         System.out.print("Enter Fistname:");
         firstName = sn.nextLine();
-        
         
         while(validateName(firstName)== false)
         {
@@ -25,7 +22,6 @@ public class blackBoxAss
 
         System.out.print("Enter Lastname:");
         lastName = sn.nextLine();
-        
         
         while(validateName(lastName)== false)
         {
@@ -42,7 +38,12 @@ public class blackBoxAss
 
 
        
-        selectVehicle(districtNo, vh);
+       vehicleNo= selectVehicle(districtNo, vh);
+
+       System.out.println(firstName + " "+ lastName + " rental confirmed");
+       System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
+       System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of ....");
+    
     
     }
 
@@ -95,8 +96,6 @@ public class blackBoxAss
         int chosenDistrict = 0;
 
         while (true) {
-
-            
 
             System.out.print("Select a district number: ");
             
@@ -167,14 +166,12 @@ public class blackBoxAss
         }
     }
 
-    public static void selectVehicle(int distNo,Vehicle [] vh)
+    public static int selectVehicle(int distNo,Vehicle [] vh)
     {
         int choice;
 
         Scanner sn = new Scanner(System.in);
-
-            
-                
+        
             while(true)
             {
             try 
@@ -195,7 +192,8 @@ public class blackBoxAss
                     System.out.println("");
                     System.out.println("You have chosen");
                     vh[choice].displayCars();
-                    break;
+                    return choice;
+                    
             }
 
             if (choice == 2)
@@ -204,7 +202,7 @@ public class blackBoxAss
                     System.out.println("");
                     System.out.println("You have chosen");
                     vh[choice].displayCars();
-                    break;
+                    return choice;
             }
 
             if (choice == 3)
@@ -213,7 +211,7 @@ public class blackBoxAss
                     System.out.println("");
                     System.out.println("You have chosen");
                     vh[choice].displayCars();
-                    break;
+                    return choice;
             } 
                 
             } 
@@ -224,12 +222,7 @@ public class blackBoxAss
                 sn.next();
             }
         
-        }
-        
-        
-        
-
-
+        }      
         
     }
 
