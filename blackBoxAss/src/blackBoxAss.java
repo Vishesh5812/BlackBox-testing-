@@ -1,25 +1,28 @@
 import java.util.*;
-<<<<<<< Updated upstream
-
-=======
-import java.util.Scanner;
 
 
 /// First class for vehicle and Discrict
->>>>>>> Stashed changes
 public class blackBoxAss
 {
     public static void main(String[] args)
     {
-       int districtNo,vehicleNo;
+       int districtNo,vehicleNo,Age;
        String firstName,lastName;
+      
+      
 
         Scanner sn = new Scanner(System.in);
         Vehicle vh[] = new Vehicle[28];
         initialise(vh);
-
-        System.out.print("Enter Fistname:");
-        firstName = sn.nextLine();
+        
+        System.out.print("Enter Age: ");
+	      Age= sn.nextInt();
+        sn.nextLine();
+        
+        if(Age >= 18)
+        {
+             System.out.print("Enter Fistname:");
+            firstName = sn.nextLine();
         
         while(validateName(firstName)== false)
         {
@@ -36,6 +39,22 @@ public class blackBoxAss
             lastName = sn.nextLine();
         }
 
+       
+
+        Scanner scanner = new Scanner(System.in);
+        String email = "";
+    
+        while (true) {
+          System.out.print("Please enter your email address: ");
+          email = scanner.nextLine();
+    
+          if (isValidEmail(email)) {
+            break;
+          } else {
+            System.out.println("Invalid email address. Please try again.");
+          }
+        }
+
         displayDistricts();
         districtNo = chooseDistrict();
 
@@ -47,12 +66,45 @@ public class blackBoxAss
        
        vehicleNo= selectVehicle(districtNo, vh);
 
+       int rentalDays = 0;
+        while(true) {
+          System.out.print("Enter the number of days for rental (Min:1 day ---- Max:15 days): ");
+          if(scanner.hasNextInt()){
+            rentalDays = scanner.nextInt();
+            if(rentalDays >= 1 && rentalDays <= 15) {
+              break;
+            } else {
+              System.out.println("Please enter a number between 1 and 15.");
+    
+            }
+          } else {
+            System.out.println("Please re-enter a valid number between 1 and 15 ONLY.");
+            scanner.next();
+          }
+        }
+
        System.out.println(firstName + " "+ lastName + " rental confirmed");
        System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
-       System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of ....");
+       System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
+        }
+        else
+        {
+            System.out.println("Error");
+         }
+        }
+
+        
+
+    private static boolean isValidEmail(String email){
+        if(email==null || email.isEmpty()){
+          return false;
+        }
     
+        int atIndex = email.indexOf('@');
+        int dotIndex = email.lastIndexOf('.');
     
-    }
+        return atIndex > 0 && dotIndex > atIndex && dotIndex <email.length()-1;
+      }
 
     public static boolean validateName(String firstName) {
         try {
@@ -233,12 +285,10 @@ public class blackBoxAss
         
     }
 
-<<<<<<< Updated upstream
-=======
-/*
+
  
     /// Second class for email and duration
-    public class blackBoxAss  {
+   /* public class blackBoxAss  {
       public static void main (String[] args) {
         Scanner scanner = new Scanner(System.in);
         String email = "";
@@ -293,6 +343,5 @@ public class blackBoxAss
 */
 
     
->>>>>>> Stashed changes
     
 }
