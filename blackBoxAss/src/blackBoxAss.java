@@ -1,6 +1,4 @@
 import java.util.*;
-
-
 /// First class for vehicle and Discrict
 public class blackBoxAss
 {
@@ -8,18 +6,38 @@ public class blackBoxAss
     {
        int districtNo,vehicleNo,Age;
        String firstName,lastName;
+       boolean halt= false;
       
+      Age = 0;
       
 
         Scanner sn = new Scanner(System.in);
         Vehicle vh[] = new Vehicle[28];
         initialise(vh);
         
-        System.out.print("Enter Age: ");
-	      Age= sn.nextInt();
-        sn.nextLine();
-        
-        if(Age >= 18)
+        while (halt != true) {
+        try {
+            System.out.print("Enter Age: ");
+            Age = sn.nextInt(); // user input
+
+            if (validateAge(Age)) {
+                break; // Break the loop if the age is valid
+            } else {
+                System.out.println("Customer under 18 not allowed !");
+                halt = true;
+                
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Session closed !");
+            halt = true;
+            sn.next(); // Clear the invalid input
+        }
+    }
+
+
+        sn.nextLine();//initialisation of firstname.
+
+        if(validateAge(Age) == true)
         {
              System.out.print("Enter Fistname:");
             firstName = sn.nextLine();
@@ -83,6 +101,7 @@ public class blackBoxAss
           }
         }
 
+        System.out.println("");
        System.out.println(firstName + " "+ lastName + " rental confirmed");
        System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
        System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
@@ -92,6 +111,28 @@ public class blackBoxAss
             System.out.println("Error");
          }
         }
+
+      /**************************************************************/
+      public static boolean validateAge(int age)
+      {
+        try {
+            if (age < 18 || age > 100)
+          {
+          //System.out.println("Invalide Age");
+          return false;
+          }
+          else
+          {
+            return true;
+          }
+        }
+         catch (IllegalArgumentException e) 
+         {
+          System.out.println("Invalid Character!");
+          return false;
+        }  
+
+      }
 
         
 
