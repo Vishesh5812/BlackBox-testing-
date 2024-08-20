@@ -4,21 +4,121 @@ public class blackBoxAss
 {
     public static void main(String[] args)
     {
-        int tempInput;
+        int districtNo;
+        String firstName,lastName;
+
+        
 
         Scanner sn = new Scanner(System.in);
         Vehicle vh[] = new Vehicle[28];
         initialise(vh);
 
-        System.out.println("Temporary Input");
-        System.out.print("Please enter a distric num:");
-        tempInput = sn.nextInt();
+        System.out.print("Enter Fistname:");
+        firstName = sn.nextLine();
+        
+        
+        while(validateName(firstName)== false)
+        {
+            System.out.print("Enter Fistname:");
+            firstName = sn.nextLine();
+        }
 
-        displayList(tempInput,vh);
-        selectVehicle(tempInput, vh);
+        System.out.print("Enter Lastname:");
+        lastName = sn.nextLine();
+        
+        
+        while(validateName(lastName)== false)
+        {
+            System.out.print("Enter Lastname:");
+            lastName = sn.nextLine();
+        }
+
+        displayDistricts();
+        districtNo = chooseDistrict();
+
+        System.out.println("");
+        System.out.println("Displaying List of Vehicle available");
+        displayList(districtNo,vh);
+
+
+       
+        selectVehicle(districtNo, vh);
     
     }
 
+    public static boolean validateName(String firstName) {
+        try {
+            if (firstName == null || firstName.isEmpty()) {
+                System.out.println("Name cannot be null or empty.");
+                return false;
+            }
+
+            if (firstName.length() < 2 || firstName.length() > 20) {
+                System.out.println("Name must be between 2 and 20 characters long.");
+                return false;
+            }
+
+            if (!firstName.matches("^[a-zA-Z]+$")) {
+                System.out.println("Name can only contain alphabetic characters.");
+                return false;
+            }
+
+            
+        } catch (IllegalArgumentException e) {
+            System.out.println("Validation error: ");
+            return false;
+        }
+        return true;
+    }
+
+    public static void displayDistricts() {
+        System.out.println("");
+        System.out.println("");
+
+        System.out.println("1. Black River");
+        System.out.println("2. Flacq");
+        System.out.println("3. Grand Port");
+        System.out.println("4. Moka");
+        System.out.println("5. Pamplemousses");
+        System.out.println("6. Plaines-Wilhems");
+        System.out.println("7. Port-Louis");
+        System.out.println("8. Rivière du Rempart");
+        System.out.println("9. Savanne");
+
+        System.out.println("");
+        System.out.println("");
+
+    }
+
+    public static int chooseDistrict() {
+        Scanner sn = new Scanner(System.in);
+        int chosenDistrict = 0;
+
+        while (true) {
+
+            
+
+            System.out.print("Select a district number: ");
+            
+            try {
+                chosenDistrict = sn.nextInt();
+
+                if (chosenDistrict >= 1 && chosenDistrict <= 9) {
+                    break; 
+                } else {
+                    System.out.println("Invalid choice. Please choose a district number between 1 and 9.");
+                    System.out.println("");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                System.out.println("");
+
+                sn.next();
+            }
+        }
+        
+        return chosenDistrict;
+    }
 
     public static void  initialise(Vehicle [] vh)
     {
