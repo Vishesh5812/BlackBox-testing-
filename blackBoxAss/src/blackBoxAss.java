@@ -5,57 +5,74 @@ public class blackBoxAss
 {
     public static void main(String[] args)
     {
-       int districtNo,vehicleNo,Age;
+       int districtNo,vehicleNo,age;
        String firstName,lastName;
-       boolean halt= false;
-      
-      Age = 0;
-      
 
+       age = 0;
+      
         Scanner sn = new Scanner(System.in);
         Vehicle vh[] = new Vehicle[28];
         initialise(vh);
         
-        while (halt != true) {
+        while (true) 
+        {
         try {
             System.out.print("Enter Age: ");
-            Age = sn.nextInt(); // user input
 
-            if (validateAge(Age)) {
-                break; // Break the loop if the age is valid
-            } else {
-                System.out.println("Customer under 18 not allowed !");
-                halt = true;
-                
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Invalid input. Session closed !");
-            halt = true;
-            sn.next(); // Clear the invalid input
+            String input = sn.nextLine().trim();
+
+            if (input.isBlank())
+             {
+                System.out.println("Age cannot be blank !");
+                System.err.println("");
+                continue;
+             }
+
+             age = Integer.parseInt(input);
+
+             if (age < 18 || age > 100) 
+             {
+                 System.out.println("Please enter an age between 18 and 100");
+                 System.out.println("");
+                 continue;
+             }
+
+             if (age>=18 && age <=100) 
+             {
+                break;    
+             }
+
+        } 
+        catch (NumberFormatException e) 
+        {
+            System.out.println("Invalid input.");
+            System.out.println("");  
         }
     }
 
 
-        sn.nextLine();//initialisation of firstname.
+        System.out.println("");
 
-        if(validateAge(Age) == true)
-        {
-             System.out.print("Enter First name:");
-            firstName = sn.nextLine();
-        
+        System.out.print("Enter First name:");
+        firstName = sn.nextLine();
+        System.out.println("");
+
         while(validateName(firstName)== false)
         {
             System.out.print("Enter First name:");
             firstName = sn.nextLine();
+            System.out.println("");
         }
 
         System.out.print("Enter Last name:");
         lastName = sn.nextLine();
+        System.out.println("");
         
         while(validateName(lastName)== false)
         {
             System.out.print("Enter Last name:");
             lastName = sn.nextLine();
+            System.out.println("");
         }
 
        
@@ -63,14 +80,20 @@ public class blackBoxAss
         Scanner scanner = new Scanner(System.in);
         String email = "";
     
-        while (true) {
+        while (true) 
+        {
           System.out.print("Please enter your email address: ");
           email = scanner.nextLine();
+          System.out.println("");
     
-          if (isValidEmail(email)) {
+          if (isValidEmail(email)) 
+          {
             break;
-          } else {
+          } 
+          else 
+          {
             System.out.println("Invalid email address. Please try again.");
+            System.out.println("");
           }
         }
 
@@ -86,35 +109,54 @@ public class blackBoxAss
        vehicleNo= selectVehicle(districtNo, vh);
 
        int rentalDays = 0;
-        while(true) {
+        while(true) 
+        {
           System.out.print("Enter the number of days for rental (Min:1 day ---- Max:15 days): ");
-          if(scanner.hasNextInt()){
-            rentalDays = scanner.nextInt();
-            if(rentalDays >= 1 && rentalDays <= 15) {
-              break;
-            } else {
-              System.out.println("Please enter a number between 1 and 15.");
-    
-            }
-          } else {
-            System.out.println("Please re-enter a valid number between 1 and 15 ONLY.");
-            scanner.next();
-          }
-        }
+          String input = sn.nextLine().trim();
+          System.out.println("");
 
-        System.out.println("");
+         try 
+         {
+             if (input.isEmpty())
+            {
+                 System.out.println("Rental Duration cannot be null.Please eneter a valid rental duration.");
+                 System.out.println("");
+                 continue;
+             }
+             rentalDays = Integer.parseInt(input);
+             if (rentalDays<1 || rentalDays > 15) 
+             {
+                 System.out.println("Invalid rental duration.Please enter a number between 1 and 15");
+                 System.out.println("");
+                 continue;
+             }
+
+             if(rentalDays >= 1 && rentalDays <= 15) 
+            {
+              break;
+            }
+         } 
+         catch (NumberFormatException e) 
+         {
+            System.out.println("Invalid input. Please enter a number.");
+            System.out.println("");
+         }
+
+        }
+      
+       
+       System.out.println("");
        System.out.println(firstName + " "+ lastName + " rental confirmed");
        System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
        System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
-        }
-        else
-        {
-            System.out.println("Error");
-         }
-        }
+       System.out.println("");
+       System.out.println("");
+
+            
+      }
 
       /**************************************************************/
-      public static boolean validateAge(int age)
+     /* public static boolean validateAge(int age)
       {
         try {
             if (age < 18 || age > 100)
@@ -133,7 +175,7 @@ public class blackBoxAss
           return false;
         }  
 
-      }
+      }*/
 
         
 
@@ -141,8 +183,6 @@ public class blackBoxAss
     {
       char test;
       
-      
-
         try 
         {
             if(email == null || email.isBlank())
@@ -162,16 +202,12 @@ public class blackBoxAss
          catch (IllegalArgumentException e) 
          {
             System.out.println("Validation error");
-          }
-      
-        
-        
+          } 
     
         int atIndex = email.indexOf('@');
         int dotIndex = email.lastIndexOf('.');
     
-        return atIndex > 0 && dotIndex > atIndex && dotIndex <email.length()-1;
-      
+        return atIndex > 0 && dotIndex > atIndex && dotIndex <email.length()-1;    
 
     }
 
@@ -247,10 +283,11 @@ public class blackBoxAss
                     System.out.println("");
                 }
              
-            } catch (NumberFormatException e) {
+            } 
+            catch (NumberFormatException e) 
+            {
                 System.out.println("Invalid input. Please enter a number.");
                 System.out.println("");
-                //sn.next();
             }
         }
         
@@ -315,14 +352,22 @@ public class blackBoxAss
             try 
             {
             System.out.print("Please choose a vehicle number:");
-            choice = sn.nextInt();
+            String input = sn.nextLine().trim();
 
-
-            while (choice < 1 || choice > 3 ) 
-            { 
-                System.out.print("Please choose a vehicle number between 1 and 3:");
-                choice = sn.nextInt();
+            if (input.isEmpty()) 
+            {
+                System.out.println("Vehicle Number cannot be null.Please eneter a valid vehicle number");
+                System.out.println("");
+                continue;
             }
+
+            choice = Integer.parseInt(input);
+
+           if (choice < 1 || choice > 3) 
+           {
+                System.out.println("Please choose a vehicle number between 1 and 3.");
+                continue;
+           }
 
             if (choice == 1)
             {
@@ -352,12 +397,10 @@ public class blackBoxAss
                     return choice;
             } 
                 
-            } 
-            
-            catch (InputMismatchException e)
+            }   
+            catch (NumberFormatException e)
             {
                 System.out.println("An invalid character has been entered.!");
-                sn.next();
             }
         
         }      
