@@ -1,0 +1,11 @@
+try{
+          if(email==null || email.isEmpty()/*|| Character.isDigit(test) == true*/  ){
+          return false;
+          }
+            
+        }
+         catch (Exception e) 
+        {
+          System.out.println("Email address cannot be null !");
+        }
+        

@@ -1,3 +1,4 @@
+//import java.lang.*;
 import java.util.*;
 /// First class for vehicle and Discrict
 public class blackBoxAss
@@ -136,16 +137,43 @@ public class blackBoxAss
 
         
 
-    private static boolean isValidEmail(String email){
-        if(email==null || email.isEmpty()){
-          return false;
+    private static boolean isValidEmail(String email)
+    {
+      char test;
+      
+      
+
+        try 
+        {
+            if(email == null || email.isBlank())
+            {
+              System.out.println("Email cannot be blank");
+              return false;
+            }
+
+            test = email.charAt(0);
+
+            if (Character.isDigit(test) == true) 
+            {
+                System.out.println("Email cannot be started with a number");
+                return false;
+            }
         }
+         catch (IllegalArgumentException e) 
+         {
+            System.out.println("Validation error");
+          }
+      
+        
+        
     
         int atIndex = email.indexOf('@');
         int dotIndex = email.lastIndexOf('.');
     
         return atIndex > 0 && dotIndex > atIndex && dotIndex <email.length()-1;
-      }
+      
+
+    }
 
     public static boolean validateName(String firstName) {
         try {
@@ -154,15 +182,17 @@ public class blackBoxAss
                 return false;
             }
 
+            if (!firstName.matches("^[a-zA-Z]+$")) {
+                System.out.println("Name can only contain alphabetic characters.");
+                return false;
+            }
+
             if (firstName.length() < 2 || firstName.length() > 20) {
                 System.out.println("Name must be between 2 and 20 characters long.");
                 return false;
             }
 
-            if (!firstName.matches("^[a-zA-Z]+$")) {
-                System.out.println("Name can only contain alphabetic characters.");
-                return false;
-            }
+            
 
             
         } catch (IllegalArgumentException e) {
@@ -200,19 +230,27 @@ public class blackBoxAss
             System.out.print("Select a district number: ");
             
             try {
-                chosenDistrict = sn.nextInt();
+                String input = sn.nextLine().trim();
 
+                if (input.isEmpty()) {
+                System.out.println("District cannot be null or empty. Please enter a valid district number.");
+                System.out.println("");
+                continue;
+                }
+
+                chosenDistrict = Integer.parseInt(input);
+                
                 if (chosenDistrict >= 1 && chosenDistrict <= 9) {
                     break; 
                 } else {
                     System.out.println("Invalid choice. Please choose a district number between 1 and 9.");
                     System.out.println("");
                 }
-            } catch (InputMismatchException e) {
+             
+            } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
                 System.out.println("");
-
-                sn.next();
+                //sn.next();
             }
         }
         
