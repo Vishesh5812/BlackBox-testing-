@@ -39,21 +39,21 @@ public class blackBoxAss
 
         if(validateAge(Age) == true)
         {
-             System.out.print("Enter Fistname:");
+             System.out.print("Enter First name:");
             firstName = sn.nextLine();
         
         while(validateName(firstName)== false)
         {
-            System.out.print("Enter Fistname:");
+            System.out.print("Enter First name:");
             firstName = sn.nextLine();
         }
 
-        System.out.print("Enter Lastname:");
+        System.out.print("Enter Last name:");
         lastName = sn.nextLine();
         
         while(validateName(lastName)== false)
         {
-            System.out.print("Enter Lastname:");
+            System.out.print("Enter Last name:");
             lastName = sn.nextLine();
         }
 
