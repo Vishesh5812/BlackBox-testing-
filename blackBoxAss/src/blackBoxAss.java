@@ -5,32 +5,34 @@ public class blackBoxAss
 {
     public static void main(String[] args)
     {
-       int districtNo,vehicleNo,age;
+       int districtNo,vehicleNo,age,phonenum;
        String firstName,lastName;
 
        age = 0;
-      
+       phonenum = 0;
+     
         Scanner sn = new Scanner(System.in);
+     
         Vehicle vh[] = new Vehicle[28];
         initialise(vh);
         
         while (true) 
         {
         try {
-            System.out.print("Enter Age: ");
+            System.out.print("Enter Age: ");   // Initialising and user input age 
 
             String input = sn.nextLine().trim();
 
-            if (input.isBlank())
+            if (input.isBlank()) // checks if age is null
              {
-                System.out.println("Age cannot be blank !");
+                System.out.println("Age cannot be blank !");  
                 System.err.println("");
                 continue;
              }
 
              age = Integer.parseInt(input);
 
-             if (age < 18 || age > 100) 
+             if (age < 18 || age > 100) // checks if age is within given range 
              {
                  System.out.println("Please enter an age between 18 and 100");
                  System.out.println("");
@@ -53,36 +55,75 @@ public class blackBoxAss
 
         System.out.println("");
 
-        System.out.print("Enter First name:");
+        System.out.print("Enter First name: ");  // User input first name
         firstName = sn.nextLine();
         System.out.println("");
 
         while(validateName(firstName)== false)
         {
-            System.out.print("Enter First name:");
-            firstName = sn.nextLine();
+            System.out.print("Enter First name: "); 
+            firstName = sn.nextLine(); 
             System.out.println("");
         }
 
-        System.out.print("Enter Last name:");
+        System.out.print("Enter Last name: "); // user input last name
         lastName = sn.nextLine();
         System.out.println("");
         
         while(validateName(lastName)== false)
         {
-            System.out.print("Enter Last name:");
+            System.out.print("Enter Last name: ");
             lastName = sn.nextLine();
             System.out.println("");
         }
 
-       
+         /// validation of phone number↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓new code to be reviewed 
+        while (true) 
+        {
+        try {
+            System.out.print("Enter Phone number: "); // User input their phone number
+
+            String input = sn.nextLine().trim();
+
+            if (input.isBlank())
+             {
+                System.out.println("phone number cannot be blank !"); // checks if phonenumber is null
+                System.err.println("");
+                continue;
+             }
+
+             phonenum = Integer.parseInt(input);
+
+             if (phonenum < 50000000 || age > 59999999)  // checks if phonenumber is outside of range
+             {
+                 System.out.println("Please enter a valid 8 digit phone number  ");
+                 System.out.println("");
+                 continue;
+             }
+             
+             
+             if (phonenum>=50000000 && phonenum <=59999999) 
+             {
+                break;    
+             }
+
+        } 
+        catch (NumberFormatException e) 
+        {
+            System.out.println("Invalid input.");
+            System.out.println("");  
+        }
+    }
+
+      /// validation of phone number↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑new code to be reviewed  ↑↑↑↑↑↑↑  
+
 
         Scanner scanner = new Scanner(System.in);
         String email = "";
     
         while (true) 
         {
-          System.out.print("Please enter your email address: ");
+          System.out.print("Please enter your email address: "); // User inputs and email address 
           email = scanner.nextLine();
           System.out.println("");
     
@@ -146,9 +187,11 @@ public class blackBoxAss
       
        
        System.out.println("");
+       System.out.println("Summary"); //  added line here 
        System.out.println(firstName + " "+ lastName + " rental confirmed");
        System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
-       System.out.println("You have rent a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
+       System.out.println("You have rented a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
+       System.out.println("Contact us on 207 2730 for further queries"); // added line here 
        System.out.println("");
        System.out.println("");
 
@@ -187,7 +230,7 @@ public class blackBoxAss
         {
             if(email == null || email.isBlank())
             {
-              System.out.println("Email cannot be blank");
+              System.out.println("Email cannot be blank");  // Checks if email address is blank
               return false;
             }
 
@@ -195,7 +238,7 @@ public class blackBoxAss
 
             if (Character.isDigit(test) == true) 
             {
-                System.out.println("Email cannot be started with a number");
+                System.out.println("Email cannot be started with a number"); // email address must not start with a number
                 return false;
             }
         }
@@ -351,7 +394,7 @@ public class blackBoxAss
             {
             try 
             {
-            System.out.print("Please choose a vehicle number:");
+            System.out.print("Please choose a vehicle number: ");
             String input = sn.nextLine().trim();
 
             if (input.isEmpty()) 
