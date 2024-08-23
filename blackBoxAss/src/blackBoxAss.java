@@ -77,13 +77,14 @@ public class blackBoxAss
             System.out.println("");
         }
 
-         /// validation of phone number↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓new code to be reviewed 
+        
         while (true) 
         {
         try {
             System.out.print("Enter Phone number: "); // User input their phone number
 
             String input = sn.nextLine().trim();
+           
 
             if (input.isBlank())
              {
@@ -92,9 +93,21 @@ public class blackBoxAss
                 continue;
              }
 
+            
+           if(input.charAt(0)!='5')
+           {
+              System.out.println("Phone number must start with 5 !");
+              System.out.println("");
+              continue;
+           }
+
+            
+
+            
+
              phonenum = Integer.parseInt(input);
 
-             if (phonenum < 50000000 || age > 59999999)  // checks if phonenumber is outside of range
+             if (phonenum < 50000000 || phonenum > 59999999)  // checks if phonenumber is outside of range
              {
                  System.out.println("Please enter a valid 8 digit phone number  ");
                  System.out.println("");
@@ -115,7 +128,7 @@ public class blackBoxAss
         }
     }
 
-      /// validation of phone number↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑new code to be reviewed  ↑↑↑↑↑↑↑  
+  
 
 
         Scanner scanner = new Scanner(System.in);
@@ -187,38 +200,20 @@ public class blackBoxAss
       
        
        System.out.println("");
-       System.out.println("Summary"); //  added line here 
+       System.out.println("Summary"); //  added line here
+       System.out.println(""); 
        System.out.println(firstName + " "+ lastName + " rental confirmed");
        System.out.println("You will be charged Rs: "+vh[vehicleNo].getPrice());
        System.out.println("You have rented a "+vh[vehicleNo].getBrand()+"  "+vh[vehicleNo].getType() + " for a period of "+rentalDays + " days");
-       System.out.println("Contact us on 207 2730 for further queries"); // added line here 
+       System.out.println("");
+       System.out.println("Contact us on 210 2720 for further queries"); // added line here 
        System.out.println("");
        System.out.println("");
 
             
       }
 
-      /**************************************************************/
-     /* public static boolean validateAge(int age)
-      {
-        try {
-            if (age < 18 || age > 100)
-          {
-          //System.out.println("Invalide Age");
-          return false;
-          }
-          else
-          {
-            return true;
-          }
-        }
-         catch (IllegalArgumentException e) 
-         {
-          System.out.println("Invalid Character!");
-          return false;
-        }  
-
-      }*/
+     
 
         
 
@@ -451,62 +446,4 @@ public class blackBoxAss
     }
 
 
- 
-    /// Second class for email and duration
-   /* public class blackBoxAss  {
-      public static void main (String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String email = "";
-    
-        while (true) {
-          System.out.print("Please enter your email address: ");
-          email = scanner.nextLine();
-    
-          if (isValidEmail(email)) {
-            break;
-          } else {
-            System.out.println("Invalid email address. Please try again.");
-          }
-        }
-    
-        int rentalDays = 0;
-        while(true) {
-          System.out.print("Enter the number of days for rental (Min:1 day ---- Max:15 days): ");
-          if(scanner.hasNextInt()){
-            rentalDays = scanner.nextInt();
-            if(rentalDays >= 1 && rentalDays <= 15) {
-              break;
-            } else {
-              System.out.println("Please enter a number between 1 and 15.");
-    
-            }
-          } else {
-            System.out.println("Please re-enter a valid number between 1 and 15 ONLY.");
-            scanner.next();
-          }
-        }
-    
-        System.out.println("Email: " + email);
-        System.out.println("Rental Duration: " + rentalDays + " days");
-    
-        scanner.close();
-      }
-      private static boolean isValidEmail(String email){
-        if(email==null || email.isEmpty()){
-          return false;
-        }
-    
-        int atIndex = email.indexOf('@');
-        int dotIndex = email.lastIndexOf('.');
-    
-        return atIndex > 0 && dotIndex > atIndex && dotIndex <email.length()-1;
-      }
-    }
-
-
-
-*/
-
-    
-    //Just made a change
 }
