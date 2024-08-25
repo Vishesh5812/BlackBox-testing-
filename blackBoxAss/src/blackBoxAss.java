@@ -173,7 +173,7 @@ public class blackBoxAss
          {
              if (input.isEmpty())
             {
-                 System.out.println("Rental Duration cannot be null.Please eneter a valid rental duration.");
+                 System.out.println("Rental Duration cannot be null.Please enter a valid rental duration.");
                  System.out.println("");
                  continue;
              }
