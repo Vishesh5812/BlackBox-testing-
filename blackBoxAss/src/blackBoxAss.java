@@ -70,7 +70,7 @@ public class blackBoxAss
         lastName = sn.nextLine();
         System.out.println("");
         
-        while(validateName(lastName)== false)
+        while(validateName(lastName)== false)//Uses same type of validation as FirstName
         {
             System.out.print("Enter Last name: ");
             lastName = sn.nextLine();
@@ -249,19 +249,19 @@ public class blackBoxAss
 
     }
 
-    public static boolean validateName(String firstName) {
+    public static boolean validateName(String Name) {
         try {
-            if (firstName == null || firstName.isEmpty()) {
+            if (Name.isEmpty()) {
                 System.out.println("Name cannot be null or empty.");
                 return false;
             }
 
-            if (!firstName.matches("^[a-zA-Z]+$")) {
+            if (!Name.matches("^[a-zA-Z]+$")) {
                 System.out.println("Name can only contain alphabetic characters.");
                 return false;
             }
 
-            if (firstName.length() < 2 || firstName.length() > 20) {
+            if (Name.length() < 2 || Name.length() > 20) {
                 System.out.println("Name must be between 2 and 20 characters long.");
                 return false;
             }
