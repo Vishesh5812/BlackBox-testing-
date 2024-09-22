@@ -39,7 +39,6 @@ public class blackBoxAss
                  continue;
              }
 
-             if (age>=18 && age <=100) 
              {
                 break;    
              }
